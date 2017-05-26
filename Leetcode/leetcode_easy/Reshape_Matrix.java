@@ -27,7 +27,7 @@ public class Reshape_Matrix {
 			
 			return nums;
 			
-		} 
+		}
 //		else {
 //			
 //			int[] values = new int[r * c];
