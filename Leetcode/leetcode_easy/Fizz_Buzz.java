@@ -8,15 +8,11 @@ public class Fizz_Buzz {
 	public static void main(String args[]) {
 		
 		int n = 15;
-		
 		List<String> answer = fizzBuzz(n);
 		
 		for(String s : answer) {
-			
 			System.out.println(s);
-			
 		}
-		
 	}
 	
 	public static List<String> fizzBuzz(int n) {
