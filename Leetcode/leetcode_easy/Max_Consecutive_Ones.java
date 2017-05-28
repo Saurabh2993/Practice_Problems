@@ -1,3 +1,4 @@
+package leetcode_easy;
 
 public class Max_Consecutive_Ones {
 	
