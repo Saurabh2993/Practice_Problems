@@ -54,14 +54,17 @@ public class Binary_Tree {
 	
 	public void invertTree(TreeNode node) {
 		
-		TreeNode temp = node.left;
-		node.left = node.right;
-		node.right = temp;
-		if(node.left != null) {
-			invertTree(node.left);
-		}
-		if(node.right != null) {
-			invertTree(node.right);
+		if(node != null) {
+        
+			TreeNode temp = node.left;
+			node.left = node.right;
+			node.right = temp;
+			if(node.left != null) {
+				invertTree(node.left);
+			}
+			if(node.right != null) {
+				invertTree(node.right);
+			}
 		}
 	}
 }
