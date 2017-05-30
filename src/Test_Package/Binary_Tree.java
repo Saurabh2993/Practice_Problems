@@ -76,12 +76,6 @@ public class Binary_Tree {
 		
 		if(node.left == null && node.right == null) {
 			return 1;
-		} else if(node.left != null && node.right == null) {
-			int left_depth = maxDepth(node.left);
-			return left_depth + 1;
-		} else if(node.left == null && node.right != null) {
-			int right_depth = maxDepth(node.right);
-			return right_depth + 1;
 		} else {
 			int left_depth = maxDepth(node.left);
 			int right_depth = maxDepth(node.right);
