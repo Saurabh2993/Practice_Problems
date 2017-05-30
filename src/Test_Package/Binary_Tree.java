@@ -11,7 +11,7 @@ public class Binary_Tree {
 	public void run() {
 		
 		TreeNode root = new TreeNode(4);
-		System.out.println("Building tree with root value " + root.value);
+//		System.out.println("Building tree with root value " + root.value);
 		insert(root, 2);
 		insert(root, 7);
 		insert(root, 1);
@@ -21,7 +21,8 @@ public class Binary_Tree {
 		
 		invertTree(root);
 		
-		printInOrder(root);
+//		printInOrder(root);
+		System.out.println(maxDepth(root));
 		
 		
 	}
@@ -65,6 +66,26 @@ public class Binary_Tree {
 			if(node.right != null) {
 				invertTree(node.right);
 			}
+		}
+	}
+	
+	public int maxDepth(TreeNode node) {
+		
+		if(node == null)
+            return 0;
+		
+		if(node.left == null && node.right == null) {
+			return 1;
+		} else if(node.left != null && node.right == null) {
+			int left_depth = maxDepth(node.left);
+			return left_depth + 1;
+		} else if(node.left == null && node.right != null) {
+			int right_depth = maxDepth(node.right);
+			return right_depth + 1;
+		} else {
+			int left_depth = maxDepth(node.left);
+			int right_depth = maxDepth(node.right);
+			return Math.max(left_depth, right_depth) + 1;
 		}
 	}
 }
