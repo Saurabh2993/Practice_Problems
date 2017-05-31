@@ -34,4 +34,16 @@ public class Best_Buy_Sell {
 		
 		return max_profit;
     }
+	
+	public static int maxProfit2 (int[] prices) {
+		
+		int max_profit = 0;
+		
+		for (int i = 0; i < prices.length - 1; i++) {
+			if(prices[i + 1] > prices[i])
+				max_profit = max_profit + prices[i + 1] - prices[i];
+		}
+		
+		return max_profit;
+	}
 }
