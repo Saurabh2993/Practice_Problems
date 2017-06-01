@@ -1,5 +1,11 @@
 package Test_Package;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class Binary_Tree {
 	
 	public static void main (String args[]) {
@@ -10,18 +16,18 @@ public class Binary_Tree {
 
 	public void run() {
 		
-		TreeNode root = new TreeNode(4);
+		TreeNode root = new TreeNode(3);
 //		System.out.println("Building tree with root value " + root.value);
 		insert(root, 2);
-		insert(root, 7);
 		insert(root, 1);
-		insert(root, 3);
-		insert(root, 6);
+		insert(root, 15);
+		insert(root, 7);
+//		insert(root, 6);
 //		insert(root, 9);
 		
-		invertTree(root);
-		
-//		printInOrder(root);
+//		invertTree(root);
+		printInOrder(root);
+		printLevelOrder(root);
 		System.out.println(maxDepth(root));
 		
 		
@@ -52,6 +58,45 @@ public class Binary_Tree {
 			printInOrder(node.right);
 		}
 	}
+	
+	public List<List<Integer>> printLevelOrder(TreeNode node) {
+		
+		List<List<Integer>> all_elements = new ArrayList<>();
+        
+        if(node == null)
+            return all_elements;
+        
+        Queue<TreeNode> elements_queue = new LinkedList<>();
+		elements_queue.add(node);
+		elements_queue.add(null);
+		
+		List<Integer> temp_list = new ArrayList<>();; 
+		do {
+			
+			node = elements_queue.remove();
+			if(node == null) {
+				elements_queue.add(null);
+				// System.out.println(Arrays.asList(temp_list));
+				all_elements.add(temp_list);
+				temp_list = new ArrayList<>();
+				continue;
+			}
+			
+			temp_list.add(node.value);
+// 			System.out.print(node.value + " ");
+			if(node.left != null) {
+				elements_queue.add(node.left);
+			}
+			if(node.right != null) {
+				elements_queue.add(node.right);
+			}
+		} while (elements_queue.size() > 1);
+		
+		all_elements.add(temp_list);
+		
+		return all_elements;
+	}
+	
 	
 	public void invertTree(TreeNode node) {
 		
