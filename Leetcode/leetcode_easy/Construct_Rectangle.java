@@ -8,7 +8,6 @@ public class Construct_Rectangle {
 		
 		System.out.println(constructRectangle(area)[0] + " " + constructRectangle(area)[1]);
 		
-		
 	}
 	
 	public static int[] constructRectangle(int area) {
