@@ -9,7 +9,6 @@ public class Search_String {
 		
 		System.out.println(strStr(x1, x2));
 		
-		
 	}
 	
 	public static int strStr(String haystack, String needle) {
