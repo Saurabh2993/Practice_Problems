@@ -22,14 +22,15 @@ public class Binary_Tree {
 		insert(root, 1);
 		insert(root, 15);
 		insert(root, 7);
-//		insert(root, 6);
-//		insert(root, 9);
+		insert(root, 6);
+		insert(root, 9);
 		
 //		invertTree(root);
-		printInOrder(root);
-		printLevelOrder(root);
-		System.out.println(maxDepth(root));
+//		printInOrder(root);
+//		printLevelOrder(root);
+//		System.out.println(maxDepth(root));
 		
+		treePaths(root);
 		
 	}
 
@@ -58,6 +59,34 @@ public class Binary_Tree {
 			printInOrder(node.right);
 		}
 	}
+	
+	public List<String> treePaths(TreeNode node) {
+		
+		List<String> answer_list = new ArrayList<>();
+		if(node != null) {
+			findNext(node, answer_list, "");
+		}
+		System.out.println(Arrays.asList(answer_list));
+		return answer_list;
+	}
+	
+	public void findNext(TreeNode node, List<String> answer, String path) {
+		System.out.println(path);
+		if(node.left != null) {
+			String temp = path + node.value + "->";
+			findNext(node.left, answer, temp);
+		}
+		if(node.right != null) {
+			String temp = path + node.value + "->";
+			findNext(node.right, answer, temp);
+		}
+		if(node.left == null && node.right == null) {
+			String temp = path + node.value;
+			answer.add(temp);
+		}
+	}
+	
+	
 	
 	public List<List<Integer>> printLevelOrder(TreeNode node) {
 		
