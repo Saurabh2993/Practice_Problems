@@ -25,12 +25,50 @@ public class Binary_Tree {
 		insert(root, 6);
 		insert(root, 9);
 		
+//		List<Integer> arr = new ArrayList<>();
+//		
+//		getArray(root, arr);
+//		
+//		System.out.println(Arrays.asList(arr));
+//		
+//		int prev = 0;
+//		int count = 0;
+//		boolean first = true;
+//		
+//		int val1, val2;
+//		
+//		for (int i : arr) {
+//			 if(count == 0) {
+//				 prev = i; 
+//			 }
+//			 count++;
+//			 if(prev > i) {
+//				 if(arr.size() == 2) {
+//					val1 = prev;
+//					val2 = i;
+//					break;
+//				 }
+//				 
+//				 if(first) {
+//					 val1 = prev;
+//					 first = false;
+//				 } else {
+//					 val2 = i;
+//					 break;
+//				 }
+//			 }
+//		}
+		
+		
+		
+		
+		
 //		invertTree(root);
 //		printInOrder(root);
 //		printLevelOrder(root);
 //		System.out.println(maxDepth(root));
 		
-		treePaths(root);
+//		treePaths(root);
 		
 	}
 
@@ -59,6 +97,16 @@ public class Binary_Tree {
 			printInOrder(node.right);
 		}
 	}
+	
+//	public void getArray(TreeNode node, List<Integer> arr) {
+//		
+//		if(node != null) {
+//			getArray(node.left, arr);
+//			arr.add(node.value);
+//			getArray(node.right, arr);
+//		}
+//		
+//	}
 	
 	public List<String> treePaths(TreeNode node) {
 		

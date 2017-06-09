@@ -1,5 +1,7 @@
 package leetcode_easy;
 
+import java.util.HashSet;
+
 public class Base7 {
 	
 	public static void main(String args[]) {
@@ -9,6 +11,7 @@ public class Base7 {
 		//fastest solution
 		System.out.println(Integer.toString(10, 2));
 		convertToBase7(x);
+		
 		
 	}
 	
