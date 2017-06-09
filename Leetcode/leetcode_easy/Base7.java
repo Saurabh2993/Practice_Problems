@@ -6,6 +6,8 @@ public class Base7 {
 		
 		int x = 0;
 		
+		//fastest solution
+		System.out.println(Integer.toString(10, 2));
 		convertToBase7(x);
 		
 	}
