@@ -23,6 +23,9 @@ public class Rotation_SubString {
 	
 	public static boolean isRotationSubstring(String s, String t) {
 		
+		if(s.length() != t.length())
+			return false;
+		
 		String temp = t + t;
 		
 		return isSubstring(s, temp);
