@@ -1,4 +1,4 @@
-package Test_Package;
+package test_Package;
 
 // ProducerConsumerSemaphore.java EECE6029 Cheng 2017
 // threads implementing the producer and consumer problem

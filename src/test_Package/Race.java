@@ -1,4 +1,4 @@
-package Test_Package;
+package test_Package;
 
 // Race.java EECE6029 cheng 2017  
 // reference: Benjamin's Java 8 Concurrency Tutorial 2015 and Tanenbaum
