@@ -14,10 +14,10 @@ public class Linked_List {
 		Linked_List l1 = new Linked_List();
 		l1.run();
 		
-		Linked_List l2 = new Linked_List();
-		l2.run2();
+//		Linked_List l2 = new Linked_List();
+//		l2.run2();
 		
-		addTwoNumbers(l1.head, l2.head);
+//		addTwoNumbers(l1.head, l2.head);
 			
 	}
 
@@ -91,8 +91,10 @@ public class Linked_List {
 		insert(9);
 		insert(1);
 		insert(6);
-//		insert(3);
-//		displayAll();
+		insert(3);
+		displayAll();
+		delete(9);
+		displayAll();
 		
 	}
 	
@@ -145,6 +147,31 @@ public class Linked_List {
 			node.next = new ListNode(i);
 		}
 		count ++;
+	}
+	
+	private void delete(int i) {
+		
+		if(head == null)
+			System.out.println("Empty List");
+		
+		else {
+			ListNode node = head;
+			if (node.value == i) {
+				head = head.next;
+				System.out.println("Deleted value: " + i);
+			} else {
+				while(node.next != null) {
+					if(node.next.value == i) {
+						node.next = node.next.next;
+						System.out.println("Deleted value: " + i);
+						break;
+					}
+					node = node.next;
+				}
+			}
+		}
+		
+		
 	}
 
 	public void addFirst(int i) {
