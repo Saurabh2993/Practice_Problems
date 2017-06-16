@@ -2,6 +2,7 @@ package test_Package;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Linked_List {
@@ -92,8 +93,13 @@ public class Linked_List {
 		insert(1);
 		insert(6);
 		insert(3);
+		insert(1);
+		insert(6);
+		insert(6);
+		insert(2);
 		displayAll();
-		delete(9);
+		removeDuplicates(head);
+//		delete(3);
 		displayAll();
 		
 	}
@@ -170,8 +176,28 @@ public class Linked_List {
 				}
 			}
 		}
+	}
+	
+	public void removeDuplicates(ListNode head) {
 		
-		
+		if(head == null)
+			System.out.println("Empty List");
+		else {
+			
+			HashSet<Integer> unique_values = new HashSet<>();
+			ListNode node = head;
+			unique_values.add(node.value);
+			while(node.next != null) {
+				System.out.println(node.next.value);
+				if(unique_values.contains(node.next.value)) {
+					System.out.println("Deleted value: " + node.next.value);
+					node.next = node.next.next;
+				} else {
+					unique_values.add(node.next.value);
+					node = node.next;
+				}
+			}
+		}
 	}
 
 	public void addFirst(int i) {
