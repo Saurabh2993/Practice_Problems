@@ -90,14 +90,14 @@ public class Linked_List {
 	public void run() {
 		
 		insert(9);
-		insert(1);
+		insert(9);
 		insert(6);
 		insert(3);
 		insert(1);
 		insert(6);
 		insert(6);
 		insert(2);
-		displayAll();
+//		displayAll();
 		removeDuplicates(head);
 //		delete(3);
 		displayAll();
@@ -178,6 +178,7 @@ public class Linked_List {
 		}
 	}
 	
+	/*O(n) solution using Hashset
 	public void removeDuplicates(ListNode head) {
 		
 		if(head == null)
@@ -195,6 +196,35 @@ public class Linked_List {
 				} else {
 					unique_values.add(node.next.value);
 					node = node.next;
+				}
+			}
+		}
+	}*/
+	
+//	O(n^2) solution without extra space
+	public void removeDuplicates(ListNode head) {
+		
+		if(head == null)
+			System.out.println("Empty List");
+		
+		else {
+			ListNode node1 = head;
+			ListNode node2;
+			
+			if(node1.next != null) {
+				while(node1.next != null) {
+					node2 = node1;
+					int x = node1.value;
+			
+					while(node2.next != null) {
+						if(node2.next.value == x) {
+							System.out.println("Deleted value: " + node2.next.value);
+							node2.next = node2.next.next;
+						} else {
+							node2 = node2.next;
+						}
+					}
+					node1 = node1.next;
 				}
 			}
 		}
