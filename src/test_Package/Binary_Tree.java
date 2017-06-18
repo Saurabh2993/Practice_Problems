@@ -8,15 +8,38 @@ import java.util.Queue;
 
 public class Binary_Tree {
 	
+	TreeNode root;
+	
 	public static void main (String args[]) {
 		
-		new Binary_Tree().run();
+		Binary_Tree tree1 = new Binary_Tree();
+		tree1.run();
+		Binary_Tree tree2 = new Binary_Tree();
+		tree2.run1();
+		
+		
+		Binary_Tree temp = new Binary_Tree();
+		TreeNode new_root = temp.mergeTrees(tree1.root, tree2.root);
+		List<List<Integer>> temp_list = temp.printLevelOrder(new_root);		
+		System.out.println(Arrays.asList(temp_list));
+		
+	}
+
+	private void run1() {
+		// TODO Auto-generated method stub
+		root = new TreeNode(6);
+		insert(root, 3);
+		insert(root, 2);
+		insert(root, 15);
+		insert(root, 7);
+		List<List<Integer>> temp_list = printLevelOrder(root);		
+		System.out.println(Arrays.asList(temp_list));
 		
 	}
 
 	public void run() {
 		
-		TreeNode root = new TreeNode(3);
+		root = new TreeNode(3);
 //		System.out.println("Building tree with root value " + root.value);
 		insert(root, 2);
 		insert(root, 1);
@@ -24,43 +47,42 @@ public class Binary_Tree {
 		insert(root, 7);
 		insert(root, 6);
 		insert(root, 9);
+		List<List<Integer>> temp_list = printLevelOrder(root);		
+		System.out.println(Arrays.asList(temp_list));
 		
-//		List<Integer> arr = new ArrayList<>();
-//		
-//		getArray(root, arr);
-//		
-//		System.out.println(Arrays.asList(arr));
-//		
-//		int prev = 0;
-//		int count = 0;
-//		boolean first = true;
-//		
-//		int val1, val2;
-//		
-//		for (int i : arr) {
-//			 if(count == 0) {
-//				 prev = i; 
-//			 }
-//			 count++;
-//			 if(prev > i) {
-//				 if(arr.size() == 2) {
-//					val1 = prev;
-//					val2 = i;
-//					break;
-//				 }
-//				 
-//				 if(first) {
-//					 val1 = prev;
-//					 first = false;
-//				 } else {
-//					 val2 = i;
-//					 break;
-//				 }
-//			 }
-//		}
+		/*List<Integer> arr = new ArrayList<>();
 		
+		getArray(root, arr);
 		
+		System.out.println(Arrays.asList(arr));
 		
+		int prev = 0;
+		int count = 0;
+		boolean first = true;
+		
+		int val1, val2;
+		
+		for (int i : arr) {
+			 if(count == 0) {
+				 prev = i; 
+			 }
+			 count++;
+			 if(prev > i) {
+				 if(arr.size() == 2) {
+					val1 = prev;
+					val2 = i;
+					break;
+				 }
+				 
+				 if(first) {
+					 val1 = prev;
+					 first = false;
+				 } else {
+					 val2 = i;
+					 break;
+				 }
+			 }
+		}*/
 		
 		
 //		invertTree(root);
@@ -96,6 +118,36 @@ public class Binary_Tree {
 			System.out.println(node.value);
 			printInOrder(node.right);
 		}
+	}
+	
+	public TreeNode mergeTrees(TreeNode node1, TreeNode node2) {
+		
+		TreeNode root;
+		if(node1 != null && node2 != null) {
+			System.out.println(node1.value + node2.value);
+			root = new TreeNode(node1.value + node2.value);
+			root.left = mergeTrees(node1.left, node2.left);
+			root.right = mergeTrees(node1.right, node2.right);
+			
+			return root;
+		}
+		else if(node1 == null && node2 != null) {
+			root = new TreeNode(node2.value);
+			root.left = mergeTrees(null, node2.left);
+			root.right = mergeTrees(null, node2.right);
+			
+			return root;
+		}
+		else if(node1 != null && node2 == null) {
+			root = new TreeNode(node1.value);
+			root.left = mergeTrees(node1.left, null);
+			root.right = mergeTrees(node1.right, null);
+			
+			return root;
+		}
+			
+		else return null;
+			
 	}
 	
 //	public void getArray(TreeNode node, List<Integer> arr) {
