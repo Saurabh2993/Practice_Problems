@@ -14,19 +14,20 @@ public class Binary_Tree {
 		
 		Binary_Tree tree1 = new Binary_Tree();
 		tree1.run();
-		Binary_Tree tree2 = new Binary_Tree();
-		tree2.run1();
+//		System.out.println(tree1.tree2str(tree1.root));
+//		Binary_Tree tree2 = new Binary_Tree();
+//		tree2.run1();
 		
 		
-		Binary_Tree temp = new Binary_Tree();
-		TreeNode new_root = temp.mergeTrees(tree1.root, tree2.root);
-		List<List<Integer>> temp_list = temp.printLevelOrder(new_root);		
-		System.out.println(Arrays.asList(temp_list));
+//		Binary_Tree temp = new Binary_Tree();
+//		TreeNode new_root = temp.mergeTrees(tree1.root, tree2.root);
+//		List<List<Integer>> temp_list = temp.printLevelOrder(new_root);		
+//		System.out.println(Arrays.asList(temp_list));
 		
 	}
 
 	private void run1() {
-		// TODO Auto-generated method stub
+
 		root = new TreeNode(6);
 		insert(root, 3);
 		insert(root, 2);
@@ -47,8 +48,9 @@ public class Binary_Tree {
 		insert(root, 7);
 		insert(root, 6);
 		insert(root, 9);
-		List<List<Integer>> temp_list = printLevelOrder(root);		
-		System.out.println(Arrays.asList(temp_list));
+		
+		int x = minAbsoluteDiff(root);
+		System.out.println(x);
 		
 		/*List<Integer> arr = new ArrayList<>();
 		
@@ -120,6 +122,53 @@ public class Binary_Tree {
 		}
 	}
 	
+	public int minAbsoluteDiff(TreeNode node) {
+		
+		List<Integer> nums = new ArrayList<>();
+		nums = getArray(node, nums);
+		int min_diff = Integer.MAX_VALUE;
+		
+		for (int i = 1; i < nums.size(); i++) {
+			if(nums.get(i) - nums.get(i - 1) < min_diff)
+				min_diff = nums.get(i) - nums.get(i - 1);
+		}
+		
+		return min_diff;
+		
+	}
+	
+	public String tree2str(TreeNode node) {
+		
+		if(node == null)
+			return "";
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(node.value);
+		if(node.left == null && node.right == null) {
+			return sb.toString();
+		} else {
+			if(node.left == null && node.right != null) {
+				sb.append("()(");
+				String right_substring = tree2str(node.right);
+				sb.append(right_substring);
+				sb.append(")");
+				return sb.toString();
+			} else {
+				sb.append("(");
+				String left_substring = tree2str(node.left);
+				sb.append(left_substring);
+				sb.append(")");
+				if(node.right != null) {
+					sb.append("(");
+					String right_substring = tree2str(node.right);
+					sb.append(right_substring);
+					sb.append(")");
+				}
+				return sb.toString();
+			}
+		}
+	}
+	
 	public TreeNode mergeTrees(TreeNode node1, TreeNode node2) {
 		
 		TreeNode root;
@@ -150,15 +199,16 @@ public class Binary_Tree {
 			
 	}
 	
-//	public void getArray(TreeNode node, List<Integer> arr) {
-//		
-//		if(node != null) {
-//			getArray(node.left, arr);
-//			arr.add(node.value);
-//			getArray(node.right, arr);
-//		}
-//		
-//	}
+	public List<Integer> getArray(TreeNode node, List<Integer> arr) {
+		
+		if(node != null) {
+			getArray(node.left, arr);
+			arr.add(node.value);
+			getArray(node.right, arr);
+		}
+		
+		return arr;
+	}
 	
 	public List<String> treePaths(TreeNode node) {
 		
