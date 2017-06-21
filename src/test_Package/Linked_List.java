@@ -149,6 +149,33 @@ public class Linked_List {
 		return head;
 	}
 	
+	public ListNode isCyclic(ListNode node) {
+		
+		ListNode slow = head;
+		ListNode fast = head;
+		
+		while(fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			
+			if(slow == fast) {
+				break;
+			}
+		}
+		
+		if(fast == null || fast.next == null)
+			return null;
+		
+		slow = head;
+		
+		while(slow != fast) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		
+		return fast;
+	}
+	
 /*	private static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
 		
 		if(head1 == null) {
