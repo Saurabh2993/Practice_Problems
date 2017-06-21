@@ -15,14 +15,64 @@ public class Linked_List {
 		Linked_List l1 = new Linked_List();
 		l1.run();
 		
-//		Linked_List l2 = new Linked_List();
-//		l2.run2();
+		Linked_List l2 = new Linked_List();
+		l2.run2();
 		
-//		addTwoNumbers(l1.head, l2.head);
+		ListNode ans_head = addTwoNumbers(l1.head, l2.head);
+		
+		while (ans_head != null) {
+			System.out.print(ans_head.value);
+			ans_head = ans_head.next;
+		}
 			
 	}
 
-	private static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
+	public void run() {
+		
+		insert(7);
+		insert(2);
+		insert(4);
+		insert(3);
+
+//		displayAll();
+//		kthLastElement(head, 6);
+//		removeDuplicates(head);
+//		delete(3);
+		
+	}
+	
+	private void run2() {
+		
+		insert(5);
+		insert(6);
+		insert(4);
+		
+	}
+
+	public void displayCount() {
+		
+		System.out.println("Number of elements in list: " + count);
+		
+	}
+	
+	public void displayAll() {
+		
+		if(head == null) {
+			System.out.println("Empty List");
+		} else if(head.next == null) {
+			System.out.println(head.value);
+		} else {
+		
+			ListNode node = head;
+			while (node.next != null) {
+				System.out.println(node.value);
+				node = node.next;
+			}
+			System.out.println(node.value);
+		}
+	}
+	
+/*	private static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
 		
 		if(head1 == null) {
 			return head2;
@@ -30,27 +80,29 @@ public class Linked_List {
 			return head1;
 		}
 		
-		Linked_List result = new Linked_List();
-		result.insert(0);
-		
-		ListNode ans_node = result.head;
+		ListNode ans_node = new ListNode(0);
+		ListNode ans_head = ans_node;
 		ListNode node1 = head1;
 		ListNode node2 = head2;
-		
+		ListNode x;
+// 		System.out.println(ans_node.val);
 		
 		while (node1 != null && node2 != null) {
 			
-			System.out.println(node1.value + "  " + node2.value + "  " + ans_node.value);
+// 			System.out.println(ans_node.val);
 			
 			int temp = ans_node.value + node1.value + node2.value;
 			
 			if(temp >= 10) {
 				ans_node.value = temp % 10;
-				result.insert(temp / 10);
+				x = new ListNode(temp / 10);
+				ans_node.next = x;
 			} else {
 				ans_node.value = temp;
-				if(node1.next != null || node2.next != null)
-					result.insert(0);
+				if(node1.next != null || node2.next != null) {
+					x = new ListNode(0);
+					ans_node.next = x;
+				}
 			}
 			
 //			System.out.println(ans_node.value);
@@ -67,72 +119,110 @@ public class Linked_List {
 		}
 		
 		while(rem != null) {
-//			System.out.println("Remaining");
+
 			int temp = ans_node.value + rem.value;
 			if(temp >= 10) {
 				ans_node.value = temp % 10;
-				result.insert(temp / 10);
+				x = new ListNode(temp / 10);
+				ans_node.next = x;
 			} else {
 				ans_node.value = temp;
-				if(rem.next != null)
-					result.insert(0);
+				if(rem.next != null) {
+					x = new ListNode(0);
+					ans_node.next = x;
+				}
 			}
 			rem = rem.next;
 			ans_node = ans_node.next;
 		}
 
-		result.displayAll();
+		return ans_head;
 		
-		return result.head;
+	}*/
+	
+	private static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
 		
+		int list1_len = length(head1);
+		int list2_len = length(head2);
+		
+		ListNode node1 = head1;
+		ListNode node2 = head2;
+		
+		if(list1_len < list2_len) {
+			node1 = padList(head1, list2_len - list1_len);
+		} else {
+			node2 = padList(head2, list1_len - list2_len);
+		}
+		
+		PartialSum sum = addListHelper(node1, node2);
+		
+		if(sum.carry == 0) {
+			return sum.sum;
+		} else {
+			ListNode answer = insertBefore(sum.sum, sum.carry);
+			return answer;
+		}
 	}
-
-	public void run() {
+	
+	static PartialSum addListHelper(ListNode node1, ListNode node2) {
 		
-		insert(9);
-		insert(9);
-		insert(6);
-		insert(3);
-		insert(1);
-		insert(6);
-		insert(6);
-		insert(2);
-//		displayAll();
-		removeDuplicates(head);
-//		delete(3);
-		displayAll();
+		if(node1 == null && node2 == null) {
+			PartialSum sum = new PartialSum();
+			return sum;
+		}
+		
+		PartialSum sum = addListHelper(node1.next, node2.next);
+		
+		int val = node1.value + node2.value + sum.carry;
+		
+		ListNode result = insertBefore(sum.sum, val % 10);
+		sum.sum = result;
+		sum.carry = val / 10;
+		
+		return sum;
 		
 	}
 	
-	private void run2() {
+	public static ListNode insertBefore(ListNode node, int value) {
 		
-		insert(0);
-//		insert(6);
-//		insert(4);
+		ListNode temp = new ListNode(value);
+		temp.next = node;
 		
+		return temp;
 	}
-
-	public void displayCount() {
+	
+	public static int length(ListNode node) {
 		
-		System.out.println("Number of elements in list: " + count);
+		int len = 0;
+		while (node != null) {
+			len ++;
+			node = node.next;
+		}
 		
+		return len;
 	}
-
-	public void displayAll() {
+	
+	public void kthLastElement(ListNode head, int k) {
 		
 		if(head == null) {
 			System.out.println("Empty List");
-		} else if(head.next == null) {
-			System.out.println(head.value);
 		} else {
-		
-			ListNode node = head;
-			while (node.next != null) {
-				System.out.println(node.value);
-				node = node.next;
+			int count = 1;
+			ListNode node1 = head;
+			ListNode node2 = head;
+			while(node1.next != null) {
+				if(count >= k) {
+					node2 = node2.next;
+				}
+				node1 = node1.next;
+				count++;
 			}
-			System.out.println(node.value);
+			System.out.println(node2.value);
+			
+			
 		}
+		
+		
 	}
 
 	public void insert(int i) {
@@ -153,6 +243,17 @@ public class Linked_List {
 			node.next = new ListNode(i);
 		}
 		count ++;
+	}
+	
+	public static ListNode padList(ListNode node, int len) {
+		
+		for (int i = 0; i < len; i++) {
+			ListNode temp = new ListNode(0);
+			temp.next = node;
+			node = temp;
+		}
+		
+		return node;
 	}
 	
 	private void delete(int i) {
@@ -237,4 +338,9 @@ public class Linked_List {
 		
 	}
 	
+}
+
+class PartialSum {
+	public ListNode sum = null;
+	int carry = 0;
 }
