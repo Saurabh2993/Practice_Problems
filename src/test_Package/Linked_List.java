@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Stack;
 
 public class Linked_List {
 	
@@ -14,16 +15,17 @@ public class Linked_List {
 		
 		Linked_List l1 = new Linked_List();
 		l1.run();
+		System.out.println(l1.isPalindrome(l1.head));
 		
-		Linked_List l2 = new Linked_List();
-		l2.run2();
+//		Linked_List l2 = new Linked_List();
+//		l2.run2();
 		
-		ListNode ans_head = addTwoNumbers(l1.head, l2.head);
+//		ListNode ans_head = addTwoNumbers(l1.head, l2.head);
 		
-		while (ans_head != null) {
-			System.out.print(ans_head.value);
-			ans_head = ans_head.next;
-		}
+//		while (ans_head != null) {
+//			System.out.print(ans_head.value);
+//			ans_head = ans_head.next;
+//		}
 			
 	}
 
@@ -32,7 +34,9 @@ public class Linked_List {
 		insert(7);
 		insert(2);
 		insert(4);
-		insert(3);
+		insert(4);
+		insert(2);
+		insert(7);
 
 //		displayAll();
 //		kthLastElement(head, 6);
@@ -49,12 +53,14 @@ public class Linked_List {
 		
 	}
 
+	//Display total count of elements in the list
 	public void displayCount() {
 		
 		System.out.println("Number of elements in list: " + count);
 		
 	}
 	
+	//Display all elements in the list
 	public void displayAll() {
 		
 		if(head == null) {
@@ -70,6 +76,77 @@ public class Linked_List {
 			}
 			System.out.println(node.value);
 		}
+	}
+	
+	//Check if the list is a palindrome(revesing a list approach)
+/*	public boolean isPalindrome(ListNode head) {
+		
+		ListNode reverse = reverseList(head);
+		
+		return isEqual(head, reverse);
+	}*/
+	
+	public boolean isPalindrome(ListNode head) {
+		
+		if(head.next == null) {
+			return true;
+		}
+		
+		ListNode slow = head;
+		ListNode fast = head;
+
+		Stack<Integer> nums = new Stack<>();
+		
+		while (fast != null && fast.next != null) {
+			nums.push(slow.value);
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		
+		if(fast != null) {
+			slow = slow.next;
+		}
+		
+		while(slow != null) {
+			if(slow.value != nums.pop()) {
+				return false;
+			}
+			slow = slow.next;
+		}
+		
+		return true;
+	}
+	
+	
+	private boolean isEqual(ListNode head, ListNode reverse) {
+
+		while(head != null) {
+			if(head.value != reverse.value) {
+				return false;
+			}
+			head = head.next;
+			reverse = reverse.next;
+			
+		}
+		
+		return true;
+	}
+
+	//Reverse a list
+	public ListNode reverseList(ListNode node) {
+		
+		ListNode head = null;
+		
+		while(node != null) {
+			
+			ListNode temp = new ListNode(node.value);
+			temp.next = head;
+			head = temp;
+			
+			node = node.next;
+		}
+		
+		return head;
 	}
 	
 /*	private static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
@@ -140,6 +217,7 @@ public class Linked_List {
 		
 	}*/
 	
+	//add two numbers  given as 6 -> 1 -> 7 + 2 -> 9 -> 5 = 9 -> 1 -> 2
 	private static ListNode addTwoNumbers(ListNode head1, ListNode head2) {
 		
 		int list1_len = length(head1);
