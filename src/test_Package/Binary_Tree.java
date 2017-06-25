@@ -9,6 +9,8 @@ import java.util.Queue;
 public class Binary_Tree {
 	
 	TreeNode root;
+	int left_count = 0;
+	int right_count = 0;
 	
 	public static void main (String args[]) {
 		
@@ -154,6 +156,25 @@ public class Binary_Tree {
             return false;
         
     }
+	
+	public boolean isSymmetric(TreeNode node) {
+		
+		if(node == null) {
+			return true;
+		}
+		return checkMirror(node, node);
+		
+	}
+	
+	public boolean checkMirror(TreeNode node1, TreeNode node2) {
+		
+		if(node1 == null && node2 == null)
+			return true;
+		if(node1 == null || node2 == null)
+			return false;
+		return (node1.value == node2.value) && (checkMirror(node1.left, node2.right)) && (checkMirror(node1.right, node2.left));
+		
+	}
 	
 	public String tree2str(TreeNode node) {
 		
