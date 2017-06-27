@@ -307,6 +307,35 @@ public class Linked_List {
 		return len;
 	}
 	
+	public ListNode rotateRight(ListNode head, int k) {
+		
+		int len = length(head);
+		if(len <= 1) {
+			return head;
+		}
+		
+		k = k % len;
+		
+		ListNode slow = head;
+		ListNode fast = head;
+		
+		int count = 0;
+		
+		while(fast.next != null) {
+			fast = fast.next;
+			if(count >= k) {
+				slow = slow.next;
+			}
+			count++;
+		}
+		
+		fast.next = head;
+		head = slow.next;
+		slow.next = null;
+		
+		return head;
+	}
+	
 	public void kthLastElement(ListNode head, int k) {
 		
 		if(head == null) {
@@ -324,10 +353,7 @@ public class Linked_List {
 			}
 			System.out.println(node2.value);
 			
-			
 		}
-		
-		
 	}
 
 	public void insert(int i) {
