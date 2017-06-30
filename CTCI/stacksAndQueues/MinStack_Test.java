@@ -12,10 +12,13 @@ public class MinStack_Test {
 		ms.push(8);
 		ms.push(40);
 		System.out.println(ms.min());
-		ms.pop();
+		System.out.println(ms.pop());
 		System.out.println(ms.min());
-		ms.pop();
+		System.out.println(ms.pop());
 		System.out.println(ms.min());
+		System.out.println(ms.pop());
+		System.out.println(ms.pop());
+		
 		
 	}
 
