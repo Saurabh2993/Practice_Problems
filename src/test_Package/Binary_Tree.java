@@ -2,9 +2,13 @@ package test_Package;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Binary_Tree {
 	
@@ -51,8 +55,11 @@ public class Binary_Tree {
 		insert(root, 6);
 		insert(root, 9);
 		
-		int x = minAbsoluteDiff(root);
-		System.out.println(x);
+		printInOrder(root);
+		printInOrder(root);
+		
+//		int x = minAbsoluteDiff(root);
+//		System.out.println(x);
 		
 		/*List<Integer> arr = new ArrayList<>();
 		
@@ -115,14 +122,41 @@ public class Binary_Tree {
 		}
 	}
 	
-	public void printInOrder(TreeNode node) {
+	/*public void printInOrder(TreeNode node) {
 		
 		if(node != null) {
 			printInOrder(node.left);
 			System.out.println(node.value);
 			printInOrder(node.right);
 		}
+	}*/
+	
+	public void printInOrder(TreeNode node) {
+		
+		Stack<TreeNode> node_stack = new Stack<>();
+		
+		while(node != null) {
+			node_stack.push(node);
+			node = node.left;
+		}
+		
+		while(!node_stack.isEmpty()) {
+			TreeNode curr = node_stack.pop();
+			System.out.println(curr.value);
+			
+			if(curr.right != null) {
+				
+				curr = curr.right;
+				
+				while(curr != null) {
+					node_stack.push(curr);
+					curr = curr.left;
+				}
+				
+			}
+		}
 	}
+	
 	
 	public int minAbsoluteDiff(TreeNode node) {
 		
