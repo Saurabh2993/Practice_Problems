@@ -1,4 +1,4 @@
-package ctci_easy;
+package ctci;
 
 public class Rotation_SubString {
 	
