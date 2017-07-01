@@ -15,11 +15,13 @@ public class Stack_LL<T> {
 	}
 	
 	private StackNode<T> top;
+	private int size = 0;
 	
 	public void push(T item) {
 		StackNode<T> t = new StackNode<T>(item);
 		t.next = top;
 		top = t;
+		size++;
 	}
 	
 	public T pop() {
@@ -27,6 +29,7 @@ public class Stack_LL<T> {
 			throw new EmptyStackException();
 		
 		T data = top.data;
+		size--;
 		top = top.next;
 		return data;
 	}
@@ -40,6 +43,10 @@ public class Stack_LL<T> {
 	
 	public boolean isEmpty() {
 		return top == null;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 
 }
