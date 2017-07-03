@@ -379,4 +379,36 @@ public class Binary_Tree {
 			return Math.max(left_depth, right_depth) + 1;
 		}
 	}
+	
+	private List<List<Integer>> answer = new ArrayList<List<Integer>>();
+    
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        if(root == null)
+            return answer;
+        
+        List<Integer> nums = new ArrayList<Integer>();
+        int curr_sum = 0;
+        checkSum(root, sum, curr_sum, nums);
+        
+        return answer;
+    }
+    
+    private void checkSum(TreeNode node, int target_sum, int curr_sum, List<Integer> nums) {
+        curr_sum += node.value;
+        nums.add(node.value);
+        
+        if(node.left == null && node.right == null && curr_sum == target_sum) {
+            answer.add(nums);
+        }
+        ArrayList<Integer> new_nums = new ArrayList<>(nums);
+        
+        if(node.left != null) {
+            checkSum(node.left, target_sum, curr_sum, new_nums);
+        }
+        
+        new_nums = new ArrayList<>(nums);
+        if(node.right != null) {
+            checkSum(node.right, target_sum, curr_sum, new_nums);
+        }
+    }
 }
