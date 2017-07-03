@@ -1,5 +1,7 @@
 package stacksAndQueues;
 
+import java.util.ArrayList;
+
 public class SortStack_Test {
 	
 	public static void main(String args[]) {
@@ -21,6 +23,10 @@ public class SortStack_Test {
 		System.out.println(ss.pop());
 		System.out.println(ss.pop());
 		System.out.println(ss.pop());
+		
+		System.out.println(Math.sqrt(5));
+		
 	}
+	
 
 }

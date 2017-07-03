@@ -32,7 +32,7 @@ public class SortStack extends Stack_LL<Integer>{
 			if(x > stack1.peek()) {
 				stack2.push(stack1.pop());
 			} else {
-				break;
+				break; 
 			}
 		}
 		stack1.push(x);
