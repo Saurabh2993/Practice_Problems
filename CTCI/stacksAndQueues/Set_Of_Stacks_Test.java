@@ -4,7 +4,7 @@ public class Set_Of_Stacks_Test {
 	
 	public static void main(String args[]) {
 		
-		Set_Of_Stacks ss = new Set_Of_Stacks();
+		Set_Of_Stacks2 ss = new Set_Of_Stacks2();
 		
 		ss.push(10);
 		ss.push(20);
