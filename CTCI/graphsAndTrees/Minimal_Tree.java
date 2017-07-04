@@ -24,7 +24,8 @@ public class Minimal_Tree {
 		
 		insertNodes(nums, low, high);
 		
-		bst.printInOrder(bst.root);
+//		bst.printInOrder(bst.root);
+		System.out.println(bst.isBalanced(bst.root));
 		/*List<List<TreeNode>> x = bst.depthWiseListOfNodes(bst.root);
 		for(List<TreeNode> t : x) {
 			for(TreeNode curr : t) {
