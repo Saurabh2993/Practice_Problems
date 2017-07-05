@@ -10,8 +10,8 @@ public class Edge implements Comparable<Edge> {
 	}
 
 	public Edge(Vertex one, Vertex two, int weight) {
-		this.one = (one.getLabel().compareTo(two.getLabel()) <= 0) ? one : two;
-		this.two = (this.one == one) ? two : one;
+		this.one = one;
+		this.two = two;
 		this.weight = weight;
 	}
 	
