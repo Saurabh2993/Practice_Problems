@@ -139,5 +139,25 @@ public class Binary_Search_Tree {
 			return Math.max(leftHeight, rightHeight) + 1;
 		}
 	}
+	
+	public boolean isValidBst(TreeNode root) {
+		return isValidBst(root, null, null);
+	}
+	
+	private boolean isValidBst(TreeNode node, Integer min, Integer max) {
+		if(node == null) {
+			return true;
+		}
+		
+		if((min != null && node.value <= min) || (max != null && node.value > max)) {
+			return false;
+		}
+		
+		if(!isValidBst(node.left, min, node.value) || !isValidBst(node.right, node.value, max)) {
+			return false;
+		}
+		
+		 return true;
+	}
 
 }
