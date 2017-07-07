@@ -410,6 +410,44 @@ public class Linked_List {
 		}
 	}
 	
+	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        
+        if(l1 == null) {
+            return l2;
+        }
+        if(l2 == null) {
+            return l1;
+        }
+        
+        ListNode answer = new ListNode(-1);
+        ListNode head = answer;
+        
+        while(l1 != null && l2 != null) {
+            if(l1.value < l2.value) {
+                answer.next = l1;
+                l1 = l1.next;
+            } else {
+                answer.next = l2;
+                l2 = l2.next;
+            }
+            answer = answer.next;
+        }
+        
+        while(l1 != null) {
+            answer.next = l1;
+            l1 = l1.next;
+            answer = answer.next;
+        }
+        
+        while(l2 != null) {
+            answer.next = l2;
+            l2 = l2.next;
+            answer = answer.next;
+        }
+        
+        return head.next;
+    }
+	
 	/*O(n) solution using Hashset
 	public void removeDuplicates(ListNode head) {
 		
