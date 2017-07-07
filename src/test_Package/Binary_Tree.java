@@ -157,6 +157,36 @@ public class Binary_Tree {
 		}
 	}
 	
+	public List<Integer> preorderTraversal(TreeNode root) {
+        
+        TreeNode node = root;
+        List<Integer> nums = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        
+        if(node == null) {
+            return nums;
+        }
+        
+        s.push(node);
+        
+        while(!s.isEmpty()) {
+            
+            node = s.pop();
+            nums.add(node.value);
+            
+            if(node.right != null) {
+                s.push(node.right);
+            }
+            
+            if(node.left != null) {
+                s.push(node.left);
+            }
+            
+        }
+        
+        return nums;
+    }
+	
 	
 	public int minAbsoluteDiff(TreeNode node) {
 		
