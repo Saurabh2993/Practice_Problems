@@ -15,6 +15,7 @@ public class Binary_Tree {
 	TreeNode root;
 	int left_count = 0;
 	int right_count = 0;
+	int tilt = 0;
 	
 	public static void main (String args[]) {
 		
@@ -104,6 +105,26 @@ public class Binary_Tree {
 //		treePaths(root);
 		
 	}
+	
+	public int findTilt(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        findSum(root);
+        return tilt;
+    }
+    
+    private int findSum(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
+        int left = findSum(root.left);
+        int right = findSum(root.right);
+        tilt = tilt + Math.abs(left - right);
+        
+        return left + right + root.value;
+    }
 
 	public void insert(TreeNode node, int value) {
 		
