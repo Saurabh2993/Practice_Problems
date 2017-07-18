@@ -507,6 +507,38 @@ public class Linked_List {
 		
 	}
 	
+	public ListNode reverseBetween(ListNode head, int m, int n) {
+        
+        if(m == n) {
+            return head;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        int count = 0;
+        ListNode start = dummy;
+        while(count < m - 1) {
+            start = start.next;
+            count++;
+        }
+        
+        count = 0;
+        ListNode node1 = start.next;
+        ListNode node2 = node1.next;
+        
+        while(count < n - m) {
+            node1.next = node2.next;
+            node2.next = start.next;
+            start.next = node2;
+            node2 = node1.next;
+            
+            count++;
+        }
+        
+        return dummy.next;
+    }
+	
 }
 
 class PartialSum {
