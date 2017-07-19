@@ -400,6 +400,47 @@ public class Binary_Tree {
 		return all_elements;
 	}
 	
+public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        
+        List<List<Integer>> answer = new ArrayList<List<Integer>>();
+        if(root == null) {
+            return answer;
+        }
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        List<Integer> level = new ArrayList<>();
+        int count = 0;
+        
+        while(q.size() != 1) {
+            TreeNode temp = q.remove();
+            
+            if(temp == null) {
+                q.add(null);
+                count++;
+                answer.add(level);
+                level = new ArrayList<>();
+                continue;
+            }
+            if(count % 2 == 1) {
+                level.add(0, temp.value);
+            } else {
+                level.add(temp.value);
+            }
+            
+            if(temp.left != null) {
+                q.add(temp.left);
+            }
+            if(temp.right != null) {
+                q.add(temp.right);
+            }
+        }
+
+        answer.add(level);
+        
+        return answer;
+    }
 	
 	public void invertTree(TreeNode node) {
 		
