@@ -2,8 +2,6 @@ package graphsAndTrees;
 
 import java.util.*;
 
-import com.sun.javafx.image.impl.ByteIndexed.Getter;
-
 /**
  * This class models a simple, undirected graph using an 
  * incidence list representation. Vertices are identified 
