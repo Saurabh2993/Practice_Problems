@@ -11,7 +11,7 @@ public class ZigZag_Conversion {
 		
 	}
 	
-	public String convert(String s, int nRows) {
+	/*public String convert(String s, int nRows) {
         
         if(nRows == 1) {
             return s;
@@ -60,6 +60,58 @@ public class ZigZag_Conversion {
         }
         
         return sb.toString();
-    }
+    }*/
 
+	public String convert(String s, int nRows) {
+		
+		StringBuilder sb = new StringBuilder();
+		int len = s.length();
+		
+		int array_length = 2 * nRows - 2;
+		int array_count = (int) Math.ceil(len / (double) array_length);
+		char[][] splitArray = new char[array_count][array_length];
+		
+		int string_index = 0;
+		
+		for(int i = 0; i < array_count && string_index < len; i ++) {
+			for(int j = 0; j < array_length && string_index < len; j ++) {
+				splitArray[i][j] = s.charAt(string_index++);
+			}
+		}
+		
+		int index1 = 0;
+		int index2 = array_length - 1;
+		
+		for(int i = 0; i < nRows; i ++) {
+			if(i == 0) {
+				for(int j = 0; j < array_count; j ++) {
+					if(splitArray[j][index1] != '\u0000') {
+						sb.append(splitArray[j][index1]);
+					}
+				}
+				index1++;
+				continue;
+			}
+			if(i == nRows - 1) {
+				for(int j = 0; j < array_count; j ++) {
+					if(splitArray[j][index1] != '\u0000') {
+						sb.append(splitArray[j][index1]);
+					}
+				}
+				continue;
+			}
+			for(int j = 0; j < array_count; j ++) {
+				if(splitArray[j][index1] != '\u0000') {
+					sb.append(splitArray[j][index1]);
+				}
+				if(splitArray[j][index2] != '\u0000') {
+					sb.append(splitArray[j][index2]);
+				}
+			}
+			index1++;
+			index2++;
+		}
+
+		return sb.toString();
+	}
 }
