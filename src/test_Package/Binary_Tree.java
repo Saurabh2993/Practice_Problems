@@ -503,4 +503,44 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
             checkSum(node.right, target_sum, curr_sum, new_nums);
         }
     }
+    
+    public boolean isBalanced(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        int left_height = checkBalance(root.left);
+        int right_height = checkBalance(root.right);
+        if(left_height == -1 || right_height == -1) {
+            return false;
+        } else if(Math.abs(left_height - right_height) > 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    private int checkBalance(TreeNode root) {
+        
+        if(root == null) {
+            return 0;
+        }
+        
+        int left_height = checkBalance(root.left);
+        if(left_height == -1) {
+            return -1;
+        }
+        
+        int right_height = checkBalance(root.right);
+        if(right_height == -1) {
+            return -1;
+        }
+        
+        if(Math.abs(left_height - right_height) > 1) {
+            return -1;
+        } else {
+            return Math.max(left_height, right_height) + 1;
+        }
+        
+        
+    }
 }
