@@ -3,8 +3,8 @@ package test_Package;
 public class TreeNode {
 	
 	int value;
-	TreeNode left;
-	TreeNode right;
+	public TreeNode left;
+	public TreeNode right;
 	
 	public TreeNode(int value) {
 		
