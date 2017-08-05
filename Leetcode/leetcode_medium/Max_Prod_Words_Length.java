@@ -10,6 +10,43 @@ public class Max_Prod_Words_Length {
 		
 	}
 	
+//	Brute Force
+	/*public int maxProduct(String[] words) {
+        
+        int n  = words.length;
+        boolean common = false;
+        int max_prod = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < n - 1; i ++) {
+            
+            for(int j = i + 1; j < n; j ++) {
+                
+                common = false;
+                String curr1 = words[i];
+                String curr2 = words[j];
+                
+                for(int k = 0; k < curr1.length(); k ++) {
+                    char c = curr1.charAt(k);
+                    if(curr2.lastIndexOf(c) != -1) {
+                        common = true;
+                        break;
+                    }
+                }
+                
+                if(!common) {
+                    max_prod = max_prod > (curr1.length() * curr2.length()) ? max_prod : (curr1.length() * curr2.length());
+                }
+            }
+        }
+        
+        if(max_prod < 0) {
+            return 0;
+        } else {
+            return max_prod;
+        }
+    }*/
+	
+//	Bit manipulation solution
 	public int maxProduct(String[] words) {
         
         int n = words.length;
