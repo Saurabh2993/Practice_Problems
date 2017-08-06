@@ -123,18 +123,18 @@ public class Binary_Tree {
         int right = findSum(root.right);
         tilt = tilt + Math.abs(left - right);
         
-        return left + right + root.value;
+        return left + right + root.getValue();
     }
 
 	public void insert(TreeNode node, int value) {
 		
-		if(value < node.value) {
+		if(value < node.getValue()) {
 			if(node.left != null) {
 				insert(node.left, value);
 			} else {
 				node.left = new TreeNode(value);
 			}
-		} else if(value > node.value) {
+		} else if(value > node.getValue()) {
 			if(node.right != null) {
 				insert(node.right, value);
 			} else {
@@ -163,7 +163,7 @@ public class Binary_Tree {
 		
 		while(!node_stack.isEmpty()) {
 			TreeNode curr = node_stack.pop();
-			System.out.println(curr.value);
+			System.out.println(curr.getValue());
 			
 			if(curr.right != null) {
 				
@@ -193,7 +193,7 @@ public class Binary_Tree {
         while(!s.isEmpty()) {
             
             node = s.pop();
-            nums.add(node.value);
+            nums.add(node.getValue());
             
             if(node.right != null) {
                 s.push(node.right);
@@ -235,7 +235,7 @@ public class Binary_Tree {
         if(p != null && q == null)
             return false;
         
-        if(p.value == q.value)
+        if(p.getValue() == q.getValue())
             return (isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
         else
             return false;
@@ -257,7 +257,7 @@ public class Binary_Tree {
 			return true;
 		if(node1 == null || node2 == null)
 			return false;
-		return (node1.value == node2.value) && (checkMirror(node1.left, node2.right)) && (checkMirror(node1.right, node2.left));
+		return (node1.getValue() == node2.getValue()) && (checkMirror(node1.left, node2.right)) && (checkMirror(node1.right, node2.left));
 		
 	}
 	
@@ -267,7 +267,7 @@ public class Binary_Tree {
 			return "";
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append(node.value);
+		sb.append(node.getValue());
 		if(node.left == null && node.right == null) {
 			return sb.toString();
 		} else {
@@ -297,22 +297,22 @@ public class Binary_Tree {
 		
 		TreeNode root;
 		if(node1 != null && node2 != null) {
-			System.out.println(node1.value + node2.value);
-			root = new TreeNode(node1.value + node2.value);
+			System.out.println(node1.getValue() + node2.getValue());
+			root = new TreeNode(node1.getValue() + node2.getValue());
 			root.left = mergeTrees(node1.left, node2.left);
 			root.right = mergeTrees(node1.right, node2.right);
 			
 			return root;
 		}
 		else if(node1 == null && node2 != null) {
-			root = new TreeNode(node2.value);
+			root = new TreeNode(node2.getValue());
 			root.left = mergeTrees(null, node2.left);
 			root.right = mergeTrees(null, node2.right);
 			
 			return root;
 		}
 		else if(node1 != null && node2 == null) {
-			root = new TreeNode(node1.value);
+			root = new TreeNode(node1.getValue());
 			root.left = mergeTrees(node1.left, null);
 			root.right = mergeTrees(node1.right, null);
 			
@@ -327,7 +327,7 @@ public class Binary_Tree {
 		
 		if(node != null) {
 			getArray(node.left, arr);
-			arr.add(node.value);
+			arr.add(node.getValue());
 			getArray(node.right, arr);
 		}
 		
@@ -347,15 +347,15 @@ public class Binary_Tree {
 	public void findNext(TreeNode node, List<String> answer, String path) {
 		System.out.println(path);
 		if(node.left != null) {
-			String temp = path + node.value + "->";
+			String temp = path + node.getValue() + "->";
 			findNext(node.left, answer, temp);
 		}
 		if(node.right != null) {
-			String temp = path + node.value + "->";
+			String temp = path + node.getValue() + "->";
 			findNext(node.right, answer, temp);
 		}
 		if(node.left == null && node.right == null) {
-			String temp = path + node.value;
+			String temp = path + node.getValue();
 			answer.add(temp);
 		}
 	}
@@ -385,7 +385,7 @@ public class Binary_Tree {
 				continue;
 			}
 			
-			temp_list.add(node.value);
+			temp_list.add(node.getValue());
 // 			System.out.print(node.value + " ");
 			if(node.left != null) {
 				elements_queue.add(node.left);
@@ -424,9 +424,9 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
                 continue;
             }
             if(count % 2 == 1) {
-                level.add(0, temp.value);
+                level.add(0, temp.getValue());
             } else {
-                level.add(temp.value);
+                level.add(temp.getValue());
             }
             
             if(temp.left != null) {
@@ -486,8 +486,8 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
     }
     
     private void checkSum(TreeNode node, int target_sum, int curr_sum, List<Integer> nums) {
-        curr_sum += node.value;
-        nums.add(node.value);
+        curr_sum += node.getValue();
+        nums.add(node.getValue());
         
         if(node.left == null && node.right == null && curr_sum == target_sum) {
             answer.add(nums);
